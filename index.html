@@ -1,122 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Leapfall</title>
-<meta name="description" content="Leapfall — a vertical-climb arcade game by LEAP FALL LTD." />
-<style>
-  :root{
-    --ink:#eafff2;
-    --muted:#7fb89a;
-    --bg:#0c1611;
-    --bg2:#11211a;
-    --frog:#3fae5a;
-    --frog-deep:#2c7d41;
-    --line:#1d2f25;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html,body{height:100%;}
-  body{
-    background:
-      radial-gradient(1200px 600px at 50% -10%, #163225 0%, var(--bg) 60%),
-      var(--bg);
-    color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    min-height:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px 24px;
-    line-height:1.6;
-  }
-  .frog{
-    width:96px;height:96px;margin:0 auto 24px;
-    position:relative;
-  }
-  .frog .body{
-    position:absolute;inset:0;
-    background:radial-gradient(circle at 50% 35%, #58c873, var(--frog) 60%, var(--frog-deep));
-    border-radius:50% 50% 48% 48%;
-    box-shadow:0 12px 40px rgba(63,174,90,.35);
-  }
-  .frog .eye{
-    position:absolute;top:14px;width:26px;height:26px;border-radius:50%;
-    background:#f4fff8;border:2px solid #0c1611;
-  }
-  .frog .eye.l{left:14px;} .frog .eye.r{right:14px;}
-  .frog .pupil{position:absolute;top:8px;width:8px;height:8px;border-radius:50%;background:#0c1611;}
-  .frog .eye.l .pupil{right:6px;} .frog .eye.r .pupil{left:6px;}
-  h1{
-    font-size:clamp(40px,11vw,72px);
-    font-weight:800;letter-spacing:-0.03em;
-    margin-bottom:14px;line-height:1;
-  }
-  h1 .fall{color:var(--frog);}
-  .tag{
-    font-size:clamp(15px,4.5vw,19px);
-    color:var(--ink);max-width:30ch;margin:0 auto 8px;
-  }
-  .sub{
-    font-size:14px;color:var(--muted);
-    letter-spacing:.18em;text-transform:uppercase;
-    margin-bottom:40px;
-  }
-  .card{
-    background:var(--bg2);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:26px 28px;
-    max-width:440px;width:100%;
-    margin:0 auto;
-    text-align:left;
-  }
-  .card h2{
-    font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--muted);margin-bottom:14px;font-weight:600;
-  }
-  .card p{font-size:15px;margin-bottom:8px;color:var(--ink);}
-  .card a{color:var(--frog);text-decoration:none;}
-  .card a:hover{text-decoration:underline;}
-  .meta{color:var(--muted);font-size:13px;}
-  footer{
-    margin-top:40px;color:var(--muted);font-size:12px;
-    line-height:1.7;max-width:440px;
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leapfall – Pull back, release, leap! Climb a deadly waterfall</title>
+<meta name="description" content="Leapfall is a fast mobile game: pull back, release and leap a little frog up a deadly waterfall. Play Global, Daily Challenge, Weekly Tournament and Groups.">
+<link rel="canonical" href="https://leapfall.com/">
+<meta name="theme-color" content="#0b2622">
+<link rel="icon" href="assets/icon-512.png">
+<link rel="apple-touch-icon" href="assets/icon-512.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Leapfall">
+<meta property="og:title" content="Leapfall – Climb a deadly waterfall">
+<meta property="og:description" content="Pull back, release, leap! Climb a deadly waterfall.">
+<meta property="og:url" content="https://leapfall.com/">
+<meta property="og:image" content="https://leapfall.com/assets/feature-graphic.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta property="og:image:alt" content="Leapfall logo above a green frog on a waterfall">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Leapfall – Climb a deadly waterfall">
+<meta name="twitter:description" content="Pull back, release, leap! Climb a deadly waterfall.">
+<meta name="twitter:image" content="https://leapfall.com/assets/feature-graphic.png">
+<link rel="preload" href="assets/aicon-extra-bold.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand wordmark" href="index.html" aria-label="Leapfall home">LEAP<span>FALL</span></a>
+  <nav class="site-nav" aria-label="Main">
+    <ul>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="delete-account.html">Delete my data</a></li>
+      <li><a href="mailto:hello@leapfall.com">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <div class="frog" aria-hidden="true">
-    <div class="body"></div>
-    <div class="eye l"><div class="pupil"></div></div>
-    <div class="eye r"><div class="pupil"></div></div>
-  </div>
+<main id="main">
+  <section class="hero">
+    <h1 class="wordmark">LEAP<span>FALL</span></h1>
+    <p class="tagline">Pull back, release, leap! <em>Climb a deadly waterfall</em></p>
+    <p class="intro">You are a determined little frog. Aim with one finger, let go, and stick the landing on the platforms above. Dodge mobs, collect flies and stay ahead of the rising water.</p>
+    <div class="stores" role="group" aria-label="Download (links coming soon)">
+      <!-- Replace with real App Store link when live -->
+      <button class="store" type="button" disabled aria-label="App Store: link coming soon"><b>App Store</b><small>Link coming soon</small></button>
+      <!-- Replace with real Google Play link when live -->
+      <button class="store" type="button" disabled aria-label="Google Play: link coming soon"><b>Google Play</b><small>Link coming soon</small></button>
+    </div>
+    <img class="hero-frog" src="assets/home-frog.png" alt="The Leapfall frog, crouched and ready to jump" width="168" height="178">
+  </section>
 
-  <h1>Leap<span class="fall">fall</span></h1>
-  <p class="tag">A determined little frog. A deadly waterfall. One long climb up.</p>
-  <p class="sub">Coming soon</p>
+  <section class="band split" aria-labelledby="how-h">
+    <div>
+      <p class="kicker">How it plays</p>
+      <h2 id="how-h">One thumb. One frog. A long way up.</h2>
+      <ol class="how">
+        <li><strong>Pull back</strong> to aim and set your power.</li>
+        <li><strong>Release</strong> to launch.</li>
+        <li><strong>Leap</strong> from platform to platform and keep climbing the falls.</li>
+      </ol>
+    </div>
+    <img class="feature" src="assets/feature-graphic.png" alt="Leapfall artwork: the frog at the foot of the waterfall" width="1024" height="500" loading="lazy">
+  </section>
 
-  <div class="card">
-    <h2>About</h2>
-    <p>Leapfall is a vertical-climb arcade game in development by LEAP FALL LTD,
-       a company registered in England and Wales. Climb, leap, and rise — if you can.</p>
-    <p class="meta" style="margin-top:14px;">More to come. The climb begins soon.</p>
-  </div>
+  <section class="band" aria-labelledby="shots-h">
+    <p class="kicker">In the game</p>
+    <h2 id="shots-h">Straight from the waterfall</h2>
+    <ul class="shots">
+      <li><img src="assets/gameplay-1.png" alt="A frog on its starting platform below the Misty Rainforest waterfall" width="780" height="1688" loading="lazy"></li>
+      <li><img src="assets/gameplay-2.png" alt="The frog mid-leap between platforms, with a snake higher up the waterfall" width="780" height="1688" loading="lazy"></li>
+      <li><img src="assets/gameplay-3.png" alt="Climbing past a snake towards flies and a Shield pickup" width="780" height="1688" loading="lazy"></li>
+    </ul>
+  </section>
 
-  <div class="card" style="margin-top:18px;">
-    <h2>Contact</h2>
-    <p>Get in touch at <a href="mailto:hello@leapfall.com">hello@leapfall.com</a></p>
-    <p style="margin-top:10px;"><a href="/privacy.html">Privacy Policy</a></p>
-  </div>
+  <section class="band" aria-labelledby="modes-h">
+    <p class="kicker">Ways to play</p>
+    <h2 id="modes-h">Four ways to climb</h2>
+    <ul class="modes">
+      <li><h3>Global</h3><p>Climb against everyone.</p></li>
+      <li><h3>Daily Challenge</h3><p>A fresh climb every day.</p></li>
+      <li><h3>Weekly Tournament</h3><p>A week to set your best.</p></li>
+      <li><h3>Groups</h3><p>Compete with your own crew.</p></li>
+    </ul>
+  </section>
+</main>
 
-  <footer>
-    LEAP FALL LTD · Registered in England and Wales, company number 17254120 ·
-    Unit A, 82 James Carter Road, Mildenhall, IP28 7DE, United Kingdom<br>
-    © 2026 LEAP FALL LTD. All rights reserved.
-  </footer>
-
+<footer class="site-footer">
+  <nav class="site-nav" aria-label="Footer">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="delete-account.html">Delete my data</a></li>
+      <li><a href="mailto:hello@leapfall.com">Contact</a></li>
+    </ul>
+  </nav>
+  <p>© 2026 LEAP FALL LTD · Company no. 17254120 · Registered in England and Wales</p>
+</footer>
 </body>
 </html>
